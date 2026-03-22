@@ -1,0 +1,512 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Ирины 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html,body{width:100%;height:100%;overflow:hidden;}
+
+        /* ===== ЭКРАНЫ ===== */
+        .screen{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            display:flex;flex-direction:column;
+            justify-content:center;align-items:center;
+            z-index:10;
+            transition:opacity 1.3s cubic-bezier(.4,0,.2,1),transform 1.3s cubic-bezier(.4,0,.2,1);
+            padding:20px;
+        }
+        .screen.hidden{opacity:0;transform:scale(.96);pointer-events:none;}
+
+        /* ===== ЭКРАН 1 ===== */
+        #screen1{
+            background:url('https://masterpiecer-images.s3.yandex.net/6cced00d7d2611eeb17bbaea8797b5f2:upscaled') center/cover no-repeat;
+        }
+        #screen1::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+            background:rgba(255,255,255,.35);
+            z-index:0;
+        }
+
+        .s1-content{
+            position:relative;z-index:5;
+            display:flex;flex-direction:column;
+            align-items:center;justify-content:center;
+        }
+
+        /* Каллиграфический шрифт — Marck Script */
+        .golden-greeting{
+            font-family:'Marck Script',cursive;
+            font-size:clamp(3rem,6.5vw,5rem);
+            font-weight:400;
+            background:linear-gradient(135deg,#FFD700 0%,#FFED4E 25%,#FFC107 50%,#FFD700 75%,#FFA000 100%);
+            background-size:200% 200%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:goldShimmer 3s ease-in-out infinite;
+            filter:drop-shadow(0 2px 8px rgba(255,215,0,.4));
+            margin-bottom:6px;
+        }
+        @keyframes goldShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+        .golden-name{
+            font-family:'Marck Script',cursive;
+            font-size:clamp(5rem,12vw,9rem);
+            font-weight:400;
+            background:linear-gradient(135deg,#FFD700 0%,#FFED4E 20%,#FFC107 40%,#FFD700 60%,#FFA000 80%,#FFD700 100%);
+            background-size:200% 200%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:goldShimmer 3s ease-in-out infinite .3s;
+            filter:drop-shadow(0 3px 16px rgba(255,215,0,.35));
+            margin-bottom:clamp(20px,3vh,40px);
+            line-height:1;
+        }
+
+        /* 3D сердце */
+        .heart-3d{
+            width:110px;height:100px;
+            margin-bottom:clamp(20px,3vh,35px);
+            animation:heart3dPulse 3s ease-in-out infinite;
+            filter:drop-shadow(0 18px 30px rgba(255,176,208,.35));
+            position:relative;
+        }
+        .heart-3d-svg{width:100%;height:100%;}
+        @keyframes heart3dPulse{
+            0%,100%{transform:scale(1) rotateY(0deg);filter:drop-shadow(0 18px 30px rgba(255,176,208,.35))}
+            50%{transform:scale(1.1) rotateY(8deg);filter:drop-shadow(0 24px 40px rgba(255,176,208,.45))}
+        }
+
+        /* 3D кнопка — светло-розовая */
+        .btn-3d{
+            display:flex;align-items:center;gap:14px;
+            padding:clamp(18px,2.5vh,26px) clamp(40px,6vw,65px);
+            background:linear-gradient(175deg,#ffd0e0 0%,#ffb8d0 18%,#ffa0c0 45%,#ff90b5 72%,#ff80aa 100%);
+            color:#7a1045;border:none;border-radius:55px;
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.7rem,3.5vw,2.6rem);
+            font-weight:700;cursor:pointer;
+            box-shadow:
+                0 2px 0 #e887a8,
+                0 4px 0 #df7a9c,
+                0 6px 0 #d66d90,
+                0 8px 0 #cc6084,
+                0 10px 0 #c35378,
+                0 14px 20px rgba(220,100,150,.35),
+                0 24px 44px rgba(220,100,150,.2),
+                0 36px 70px rgba(220,100,150,.1),
+                inset 0 2px 0 rgba(255,255,255,.5),
+                inset 0 -3px 0 rgba(0,0,0,.08);
+            transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s ease;
+            transform:perspective(800px) rotateX(5deg);
+            position:relative;overflow:hidden;
+            letter-spacing:.02em;
+        }
+        .btn-3d::before{
+            content:'';position:absolute;top:-50%;left:-70%;
+            width:50%;height:200%;
+            background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);
+            transform:skewX(-15deg);
+            animation:btnSheen 4s ease-in-out infinite 2s;
+        }
+        @keyframes btnSheen{0%{left:-70%}50%,100%{left:130%}}
+        .btn-3d:hover{
+            transform:perspective(800px) rotateX(5deg) translateY(-8px) scale(1.04);
+            box-shadow:
+                0 2px 0 #e887a8,0 4px 0 #df7a9c,0 6px 0 #d66d90,
+                0 8px 0 #cc6084,0 10px 0 #c35378,0 14px 0 #ba4670,
+                0 20px 28px rgba(220,100,150,.42),
+                0 35px 60px rgba(220,100,150,.24),
+                inset 0 2px 0 rgba(255,255,255,.55);
+        }
+        .btn-3d:active{
+            transform:perspective(800px) rotateX(5deg) translateY(4px) scale(1.01);
+            box-shadow:0 1px 0 #e887a8,0 2px 0 #df7a9c,0 4px 12px rgba(220,100,150,.3),inset 0 2px 0 rgba(255,255,255,.4);
+        }
+
+        .btn-heart-3d{
+            width:30px;height:27px;
+            animation:heartBtnPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes heartBtnPulse{0%,100%{transform:scale(1) rotateY(0deg)}50%{transform:scale(1.12) rotateY(10deg)}}
+
+        .hint-text{
+            margin-top:clamp(16px,2.5vh,28px);
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.2rem,2.4vw,1.75rem);
+            font-weight:500;
+            color:#5a2800;
+            letter-spacing:.01em;
+            text-shadow:
+                0 0 12px rgba(255,255,255,.95),
+                0 0 24px rgba(255,255,255,.8),
+                0 1px 0 rgba(255,255,255,1);
+        }
+
+        /* ===== ЭКРАН 2 ===== */
+        #screen2{
+            background:url('https://avatars.mds.yandex.net/i?id=fb4bf97f0a7a342a3836cdd125166c05_l-4248551-images-thumbs&n=13') center/cover no-repeat;
+        }
+        #screen2::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+            background:rgba(255,255,255,.2);
+            z-index:0;
+        }
+
+        .card-wrapper{
+            position:relative;z-index:5;
+            width:92%;max-width:880px;max-height:93vh;
+            background:rgba(255,255,255,.92);
+            backdrop-filter:blur(30px);
+            border:2px solid rgba(255,255,255,.8);
+            border-radius:40px;
+            padding:3vh 5vw;
+            box-shadow:0 30px 70px rgba(0,0,0,.1),0 10px 30px rgba(0,0,0,.06);
+            display:flex;flex-direction:column;
+            justify-content:center;align-items:center;
+            gap:1.5vh;overflow:hidden;
+            text-align:center;
+        }
+
+        .card-title{
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(2.24rem,5.6vw,3.84rem);font-weight:800;
+            background:linear-gradient(135deg,#f5e642 0%,#d4a017 28%,#ffe066 55%,#c8870a 82%,#f5e642 100%);
+            background-size:200% 200%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:goldShimmer 4s ease-in-out infinite;
+            filter:drop-shadow(0 2px 6px rgba(212,160,23,.25));
+            line-height:1.1;
+        }
+
+        .inline-heart-3d{
+            display:inline-block;
+            width:.8em;height:.72em;
+            vertical-align:middle;
+            animation:inlineHeart3d 3s ease-in-out infinite;
+        }
+        @keyframes inlineHeart3d{
+            0%,100%{transform:scale(1) rotateY(0deg)}
+            50%{transform:scale(1.12) rotateY(12deg)}
+        }
+
+        .msg{
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.12rem,2.4vw,1.68rem);
+            font-weight:600;color:#1a2f5a;
+            line-height:1.55;
+            text-shadow:0 1px 3px rgba(255,255,255,.8);
+            transition:transform .5s cubic-bezier(.34,1.56,.64,1);
+        }
+        .msg:hover{transform:translateX(4px);}
+        .green-flower{color:#22c55e;}
+        .divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.35),transparent);margin:.15vh 0;}
+
+        .signature-name{
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.76rem,4vw,2.56rem);font-weight:800;
+            background:linear-gradient(135deg,#8b5cf6,#a78bfa,#7c3aed);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            margin-top:.3vh;
+        }
+        .signature-date{
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(0.96rem,2vw,1.36rem);font-weight:600;color:#64748b;
+        }
+
+        .btn-gift-3d{
+            margin-top:.8vh;
+            padding:clamp(13px,1.8vh,18px) clamp(36px,5vw,55px);
+            background:linear-gradient(175deg,#ffd0e0 0%,#ffb8d0 18%,#ffa0c0 45%,#ff90b5 72%,#ff80aa 100%);
+            color:#7a1045;border:none;border-radius:50px;
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.2rem,2.6vw,1.85rem);font-weight:700;
+            cursor:pointer;
+            box-shadow:
+                0 2px 0 #e887a8,0 4px 0 #df7a9c,0 6px 0 #d66d90,
+                0 8px 14px rgba(220,100,150,.35),
+                0 18px 35px rgba(220,100,150,.2),
+                inset 0 2px 0 rgba(255,255,255,.5);
+            transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s ease;
+            transform:perspective(700px) rotateX(4deg);
+            position:relative;overflow:hidden;
+        }
+        .btn-gift-3d::before{
+            content:'';position:absolute;top:-50%;left:-70%;
+            width:50%;height:200%;
+            background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);
+            transform:skewX(-15deg);
+            animation:btnSheen 4s ease-in-out infinite 1.5s;
+        }
+        .btn-gift-3d:hover{
+            transform:perspective(700px) rotateX(4deg) translateY(-6px) scale(1.04);
+            box-shadow:0 2px 0 #e887a8,0 4px 0 #df7a9c,0 6px 0 #d66d90,0 8px 0 #cc6084,0 12px 20px rgba(220,100,150,.42),0 24px 48px rgba(220,100,150,.24),inset 0 2px 0 rgba(255,255,255,.55);
+        }
+        .btn-gift-3d:active{
+            transform:perspective(700px) rotateX(4deg) translateY(3px) scale(1.01);
+            box-shadow:0 1px 0 #e887a8,0 2px 0 #df7a9c,0 4px 10px rgba(220,100,150,.3);
+        }
+
+        /* ===== ЭКРАН 3 ===== */
+        #screen3{
+            background:linear-gradient(135deg,
+                #fffef5 0%,#fef9e7 15%,#fff8e1 28%,
+                #fff3cd 42%,#ffeeba 55%,
+                #fff8e1 68%,#fffef5 82%,#fef9e7 100%);
+            background-size:400% 400%;
+            animation:goldBgShift 18s ease-in-out infinite;
+        }
+        @keyframes goldBgShift{
+            0%,100%{background-position:0% 50%}
+            33%{background-position:100% 0%}
+            66%{background-position:50% 100%}
+        }
+        #screen3::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+            background:
+                repeating-linear-gradient(45deg, rgba(173,216,230,.04) 0px, rgba(173,216,230,.04) 1px, transparent 1px, transparent 40px),
+                repeating-linear-gradient(-45deg, rgba(176,224,255,.04) 0px, rgba(176,224,255,.04) 1px, transparent 1px, transparent 40px);
+            z-index:0;
+        }
+
+        .forever-text{
+            position:absolute;top:clamp(20px,4vh,45px);right:clamp(20px,4vw,50px);
+            font-family:'Marck Script',cursive;
+            font-size:clamp(1.6rem,3.5vw,2.8rem);
+            color:rgba(180,140,60,.55);
+            text-shadow:0 1px 3px rgba(255,255,255,.8);
+            z-index:5;
+            animation:foreverFloat 6s ease-in-out infinite;
+        }
+        @keyframes foreverFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+        .gift-content{
+            display:flex;flex-direction:column;
+            justify-content:center;align-items:center;
+            gap:4vh;z-index:10;position:relative;
+        }
+        .gift-love{
+            font-family:'Playfair Display',serif;font-style:italic;
+            font-size:clamp(3rem,8vw,5.5rem);font-weight:700;
+            color:#1e3a8a;
+            text-shadow:0 2px 10px rgba(255,255,255,.8);
+            display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
+        }
+        .gift-love .inline-heart-3d{width:.7em;height:.63em;}
+        .gift-subtitle{
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.8rem,4.5vw,3rem);font-weight:700;
+            background:linear-gradient(135deg,#f5e642 0%,#d4a017 28%,#ffe066 55%,#c8870a 82%,#f5e642 100%);
+            background-size:200% 200%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:goldShimmer 4s ease-in-out infinite;
+            filter:drop-shadow(0 2px 8px rgba(212,160,23,.3));
+        }
+
+        .btn-back-3d{
+            margin-top:2vh;
+            padding:clamp(14px,2vh,20px) clamp(40px,5.5vw,58px);
+            background:linear-gradient(175deg,#ffd0e0 0%,#ffb8d0 18%,#ffa0c0 45%,#ff90b5 72%,#ff80aa 100%);
+            color:#7a1045;border:none;border-radius:45px;
+            font-family:'Open Sans',sans-serif;
+            font-size:clamp(1.3rem,2.8vw,1.85rem);font-weight:700;cursor:pointer;
+            box-shadow:
+                0 2px 0 #e887a8,0 4px 0 #df7a9c,0 6px 0 #d66d90,
+                0 10px 18px rgba(220,100,150,.35),
+                0 20px 38px rgba(220,100,150,.2),
+                inset 0 2px 0 rgba(255,255,255,.5);
+            transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s ease;
+            transform:perspective(600px) rotateX(4deg);
+            position:relative;overflow:hidden;
+        }
+        .btn-back-3d::before{
+            content:'';position:absolute;top:-50%;left:-70%;
+            width:50%;height:200%;
+            background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);
+            transform:skewX(-15deg);
+            animation:btnSheen 4s ease-in-out infinite 1.8s;
+        }
+        .btn-back-3d:hover{
+            transform:perspective(600px) rotateX(4deg) translateY(-6px) scale(1.04);
+            box-shadow:0 2px 0 #e887a8,0 4px 0 #df7a9c,0 6px 0 #d66d90,0 8px 0 #cc6084,0 14px 22px rgba(220,100,150,.44),0 28px 50px rgba(220,100,150,.26),inset 0 2px 0 rgba(255,255,255,.55);
+        }
+        .btn-back-3d:active{
+            transform:perspective(600px) rotateX(4deg) translateY(3px) scale(1.01);
+            box-shadow:0 1px 0 #e887a8,0 2px 0 #df7a9c,0 4px 10px rgba(220,100,150,.3);
+        }
+
+        .treasure{position:fixed;top:-80px;pointer-events:none;z-index:15;animation:treasureFall linear infinite;}
+        @keyframes treasureFall{
+            0%{transform:translateY(0) rotateY(0deg);opacity:0}
+            8%{opacity:.85}92%{opacity:.85}
+            100%{transform:translateY(115vh) rotateY(720deg);opacity:0}
+        }
+
+        @media(max-height:780px){
+            .card-wrapper{padding:2.2vh 4.5vw;gap:1.2vh;border-radius:34px;}
+            .msg{font-size:clamp(1.15rem,2.5vw,1.65rem);}
+            .card-title{font-size:clamp(2.2rem,5.5vw,3.5rem);}
+            .signature-name{font-size:clamp(1.8rem,4vw,2.5rem);}
+            .btn-gift-3d{padding:10px 32px;font-size:clamp(1rem,2.2vw,1.4rem);}
+        }
+        @media(max-height:650px){
+            .card-wrapper{padding:1.5vh 3.5vw;gap:.8vh;}
+            .msg{font-size:clamp(1rem,2.1vw,1.35rem);line-height:1.4;}
+        }
+        @media(max-width:480px){
+            .heart-3d{width:80px;height:72px;margin-bottom:18px;}
+            .btn-3d{padding:16px 40px;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- SVG словарь -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+    <defs>
+        <linearGradient id="heart3dMain" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffc0d0"/>
+            <stop offset="25%" style="stop-color:#ffb0c8"/>
+            <stop offset="50%" style="stop-color:#ffa0be"/>
+            <stop offset="75%" style="stop-color:#ff90b0"/>
+            <stop offset="100%" style="stop-color:#ffb8d0"/>
+        </linearGradient>
+        <radialGradient id="heartShine" cx="35%" cy="30%" r="50%">
+            <stop offset="0%" style="stop-color:rgba(255,255,255,.7)"/>
+            <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+        </radialGradient>
+        <linearGradient id="heartShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(0,0,0,0)"/>
+            <stop offset="100%" style="stop-color:rgba(200,100,140,.35)"/>
+        </linearGradient>
+        <path id="heartP" d="M100 175 C38 118 0 82 0 48 C0 20 20 0 48 0 C68 0 86 14 100 32 C114 14 132 0 152 0 C180 0 200 20 200 48 C200 82 162 118 100 175Z"/>
+        <clipPath id="heartClip">
+            <use href="#heartP"/>
+        </clipPath>
+    </defs>
+</svg>
+
+<!-- ===== ЭКРАН 1 ===== -->
+<div class="screen" id="screen1">
+    <div class="s1-content">
+        <div class="golden-greeting">Доброе утро,</div>
+        <div class="golden-name">Ирина!</div>
+
+        <div class="heart-3d">
+            <svg class="heart-3d-svg" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="42" ry="35" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+                <use href="#heartP" fill="url(#heartShadow)" opacity=".4"/>
+            </svg>
+        </div>
+
+        <button class="btn-3d" onclick="goTo(2)">
+            Ты классная
+            <svg class="btn-heart-3d" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="38" ry="30" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+            </svg>
+        </button>
+
+        <div class="hint-text">Нажми, чтобы открыть письмо</div>
+    </div>
+</div>
+
+<!-- ===== ЭКРАН 2 ===== -->
+<div class="screen hidden" id="screen2">
+    <div class="card-wrapper">
+        <div class="card-title">Звёздочка моя</div>
+
+        <p class="msg">
+            Сегодня, в воскресный день я желаю тебе радостного,
+            увлекательного и счастливого дня как в детстве
+            <span class="green-flower">🌿</span>
+        </p>
+        <div class="divider"></div>
+        <p class="msg">
+            Самая приятная часть моей жизни,
+            самый желанный и нужный мне человек
+            <svg class="inline-heart-3d" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="36" ry="28" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+            </svg>
+        </p>
+        <div class="divider"></div>
+        <p class="msg">
+            Каждый день я думаю о тебе, мысленно я всегда с тобой
+            <svg class="inline-heart-3d" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="36" ry="28" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+            </svg>
+        </p>
+        <div class="divider"></div>
+        <p class="msg" style="text-align:right;width:100%;">
+            Пусть этот день принесёт тебе море радости, добра и волшебства
+        </p>
+        <div class="signature-name" style="align-self:flex-end;margin-right:5vw;">Артём</div>
+        <div class="signature-date" style="align-self:flex-end;margin-right:5vw;">22.03.2026</div>
+        <button class="btn-gift-3d" onclick="goTo(3)">Ты красивая</button>
+    </div>
+</div>
+
+<!-- ===== ЭКРАН 3 ===== -->
+<div class="screen hidden" id="screen3">
+    <div class="forever-text">Я буду любить тебя вечно</div>
+
+    <div class="gift-content">
+        <div class="gift-love">
+            <svg class="inline-heart-3d" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="36" ry="28" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+            </svg>
+            Я люблю тебя
+            <svg class="inline-heart-3d" viewBox="0 0 200 180">
+                <use href="#heartP" fill="url(#heart3dMain)"/>
+                <ellipse cx="75" cy="55" rx="36" ry="28" fill="url(#heartShine)" clip-path="url(#heartClip)"/>
+            </svg>
+        </div>
+        <div class="gift-subtitle">Свет очей безусловный невидимый</div>
+        <button class="btn-back-3d" onclick="goTo(1)">Вернуться</button>
+    </div>
+</div>
+
+<script>
+let treasureInterval=null;
+
+function goTo(n){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
+    stopTreasures();
+    if(n===2) startTreasures();
+    setTimeout(()=>document.getElementById('screen'+n).classList.remove('hidden'),400);
+}
+
+function makeSVG(){
+    const r=Math.random();
+    const uid=Date.now()+Math.floor(Math.random()*9999);
+    if(r<.3) return `<svg width="44" height="44" viewBox="0 0 44 44"><defs><radialGradient id="gc${uid}" cx="35%" cy="35%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="35%" stop-color="#ffd700"/><stop offset="100%" stop-color="#b8860b"/></radialGradient></defs><ellipse cx="22" cy="22" rx="20" ry="17" fill="url(#gc${uid})" stroke="#c49000" stroke-width="1.5"/><text x="22" y="27" text-anchor="middle" font-size="13" fill="#7a5200" font-weight="bold">$</text></svg>`;
+    if(r<.52) return `<svg width="40" height="46" viewBox="0 0 40 46"><defs><linearGradient id="dg${uid}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e3f6ff"/><stop offset="40%" stop-color="#b3e5fc"/><stop offset="100%" stop-color="#4fc3f7"/></linearGradient></defs><polygon points="20,2 38,15 32,44 8,44 2,15" fill="url(#dg${uid})" stroke="#81d4fa" stroke-width="1.2"/><polygon points="10,15 20,2 30,15 20,44" fill="rgba(255,255,255,.42)"/></svg>`;
+    if(r<.75) return `<svg width="42" height="42" viewBox="0 0 42 42"><defs><radialGradient id="sg${uid}" cx="35%" cy="35%"><stop offset="0%" stop-color="#fafafa"/><stop offset="50%" stop-color="#d0d0d0"/><stop offset="100%" stop-color="#b0b0b0"/></radialGradient></defs><ellipse cx="21" cy="21" rx="19" ry="17" fill="url(#sg${uid})" stroke="#b0b0b0" stroke-width="1.5"/></svg>`;
+    return `<svg width="56" height="30" viewBox="0 0 56 30"><defs><linearGradient id="bg${uid}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8e6c9"/><stop offset="50%" stop-color="#81c784"/><stop offset="100%" stop-color="#4caf50"/></linearGradient></defs><rect x="1" y="1" width="54" height="28" rx="5" fill="url(#bg${uid})" stroke="#388e3c" stroke-width="1"/><text x="28" y="19" text-anchor="middle" font-size="10" fill="#1b5e20" font-weight="bold">1000</text></svg>`;
+}
+
+function startTreasures(){
+    if(treasureInterval)return;
+    treasureInterval=setInterval(()=>{
+        const el=document.createElement('div');el.className='treasure';
+        el.innerHTML=makeSVG();
+        el.style.left=Math.random()*92+'vw';
+        el.style.animationDuration=(Math.random()*6+7)+'s';
+        el.style.filter='drop-shadow(0 6px 14px rgba(200,170,50,.22))';
+        document.body.appendChild(el);
+        setTimeout(()=>el.remove(),14000);
+    },700);
+}
+function stopTreasures(){
+    if(treasureInterval){clearInterval(treasureInterval);treasureInterval=null;}
+    document.querySelectorAll('.treasure').forEach(t=>t.remove());
+}
+</script>
+</body>
+</html>
+```
